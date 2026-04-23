@@ -1,0 +1,41 @@
+[
+  { "id": "START", "parentId": null, "type": "start", "text": "Good evening. Let's take 5 minutes to process how you showed up today.", "options": null, "target": "A1_OPEN" },
+
+  /* --- AXIS 1: LOCUS (VICTIM vs. VICTOR) --- */
+  { "id": "A1_OPEN", "parentId": "START", "type": "question", "text": "When you think about the 'shape' of your day, which feels most true?", "options": "I drove the day|The day drove me|It was a tug-of-war", "signal": null },
+  { "id": "A1_D1", "parentId": "A1_OPEN", "type": "decision", "text": null, "options": "answer=I drove the day:A1_VICTOR_1;answer=The day drove me:A1_VICTIM_1;answer=It was a tug-of-war:A1_VICTOR_1" },
+  
+  { "id": "A1_VICTOR_1", "parentId": "A1_D1", "type": "question", "text": "You felt like you had agency. When a challenge popped up, what was your move?", "options": "I looked for a workaround|I paused to strategize|I powered through", "signal": "axis1:internal" },
+  { "id": "A1_VICTIM_1", "parentId": "A1_D1", "type": "question", "text": "The day felt heavy. What felt most outside of your control?", "options": "Other people's choices|The sheer volume of work|Unexpected technical hurdles", "signal": "axis1:external" },
+
+  { "id": "A1_VICTOR_R", "parentId": "A1_VICTOR_1", "type": "reflection", "text": "That's an 'Internal Locus.' Even in the tug-of-war, you recognized your hands were on the rope.", "options": "Continue", "signal": "axis1:internal" },
+  { "id": "A1_VICTIM_R", "parentId": "A1_VICTIM_1", "type": "reflection", "text": "It’s honest to admit when you feel like a passenger. Reflection is about finding the next time you can grab the wheel.", "options": "Continue", "signal": "axis1:external" },
+
+  { "id": "B1", "parentId": null, "type": "bridge", "text": "Now, let’s look at your 'Orientation'—were you focused on what you gained or what you gave?", "options": null, "target": "A2_OPEN" },
+
+  /* --- AXIS 2: ORIENTATION (CONTRIBUTION vs. ENTITLEMENT) --- */
+  { "id": "A2_OPEN", "parentId": "B1", "type": "question", "text": "Which of these moments stands out most from today?", "options": "I solved a problem for the team|I felt my efforts weren't noticed|I did exactly what was asked|I went beyond my job description", "signal": null },
+  { "id": "A2_D1", "parentId": "A2_OPEN", "type": "decision", "text": null, "options": "answer=I solved a problem for the team|I went beyond my job description:A2_CONTRIB_1;answer=I felt my efforts weren't noticed|I did exactly what was asked:A2_ENTITLE_1" },
+
+  { "id": "A2_CONTRIB_1", "parentId": "A2_D1", "type": "question", "text": "When you focus on the 'work' itself, how does your energy change?", "options": "It feels sustainable|It feels purposeful|It feels rewarding", "signal": "axis2:contribution" },
+  { "id": "A2_ENTITLE_1", "parentId": "A2_D1", "type": "question", "text": "When you feel 'unnoticed,' what do you find yourself wishing for?", "options": "Public praise|More resources|A simpler workload", "signal": "axis2:entitlement" },
+
+  { "id": "A2_CONTRIB_R", "parentId": "A2_CONTRIB_1", "type": "reflection", "text": "Contribution is a 'Citizen' mindset. You’re building the environment you want to work in.", "options": "Continue", "signal": "axis2:contribution" },
+  { "id": "A2_ENTITLE_R", "parentId": "A2_ENTITLE_1", "type": "reflection", "text": "We all want to be seen. But tying your peace of mind to external credit is a heavy way to live.", "options": "Continue", "signal": "axis2:entitlement" },
+
+  { "id": "B2", "parentId": "A2_ENTITLE_R", "type": "bridge", "text": "Finally, let's look at the 'Radius'—who was in your field of vision today?", "options": null, "target": "A3_OPEN" },
+
+  /* --- AXIS 3: RADIUS (SELF-CENTRISM vs. ALTROCENTRISM) --- */
+  { "id": "A3_OPEN", "parentId": "B2", "type": "question", "text": "When you were most stressed today, who was the focus of that stress?", "options": "My own performance|A struggling colleague|The customer's experience|The team's reputation", "signal": null },
+  { "id": "A3_D1", "parentId": "A3_OPEN", "type": "decision", "text": null, "options": "answer=My own performance:A3_SELF_1;answer=A struggling colleague|The customer's experience|The team's reputation:A3_ALTRO_1" },
+
+  { "id": "A3_SELF_1", "parentId": "A3_D1", "type": "question", "text": "When the radius is just 'Me', the pressure is 100% on you. Could you have 'zoomed out' today?", "options": "Yes, I see that now|No, it was a survival day|Maybe, with more perspective", "signal": "axis3:self" },
+  { "id": "A3_ALTRO_1", "parentId": "A3_D1", "type": "question", "text": "By focusing on {A3_OPEN.answer}, how did your internal stress feel?", "options": "It felt lighter|It felt more meaningful|It didn't change much", "signal": "axis3:altro" },
+
+  { "id": "A3_SELF_R", "parentId": "A3_SELF_1", "type": "reflection", "text": "Self-centrism isn't 'bad,' but it's narrow. Zooming out usually makes the problem feel smaller.", "options": "Continue", "signal": "axis3:self" },
+  { "id": "A3_ALTRO_R", "parentId": "A3_ALTRO_1", "type": "reflection", "text": "Focusing on others is a form of 'Self-Transcendence.' It turns work into a service.", "options": "Continue", "signal": "axis3:altro" },
+
+  /* --- FINAL SUMMARY --- */
+  { "id": "SUMMARY", "parentId": "A3_ALTRO_R", "type": "summary", "text": "Reflecting on today: You navigated with a {axis1.dominant} locus, a focus on {axis2.dominant}, and a {axis3.dominant} radius of concern.", "options": "Finish", "target": "END" },
+  { "id": "END", "parentId": "SUMMARY", "type": "end", "text": "Thank you for the honesty. See you tomorrow.", "options": null }
+]
