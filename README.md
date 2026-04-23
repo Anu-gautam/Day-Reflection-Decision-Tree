@@ -1,6 +1,6 @@
 # Day Reflection Decision Tree
 
-> *An interactive end-of-day journalling tool powered by a Python AI agent*
+> *An interactive end-of-day journalling tool powered by a rule-based Python agent — fully deterministic, no LLMs involved*
 
 ---
 
@@ -11,6 +11,16 @@ At the end of a workday, it can be hard to know **how** you really showed up —
 This tool is a short, guided **5-minute reflection exercise** that asks you a handful of targeted questions and then gives you a personalised insight into your mindset for that day.
 
 Think of it like a smart questionnaire: based on how you answer each question, it steers you down a different path and ends with a plain-English summary of your day's "mental profile."
+
+---
+
+## ⚠️ Important: How This Tool Actually Works
+
+> **🔒 Fully Deterministic — No Surprises**
+> Every response this tool gives is drawn from a **pre-written decision tree** stored in a JSON file. Given the same answers, you will always get the exact same output. There is no randomness, no "AI creativity", and no hidden reasoning happening behind the scenes.
+
+> **🚫 No LLMs Used at Runtime**
+> This project does **not** call any Large Language Model (such as ChatGPT, Gemini, or any other AI service) when you run it. All outputs — questions, insights, and the final summary — are fixed strings retrieved by navigating the decision tree based on your choices. Your data never leaves your machine.
 
 ---
 
@@ -45,6 +55,7 @@ There are no "right" answers. The goal is honest self-awareness, not a score.
 
 This project demonstrates how **AI-agent thinking** can be applied to personal development — not just business problems. It shows:
 
+- **Deterministic outputs**: Every result is pre-written — the same answers always produce the same insight, with no LLM or generative AI involved.
 - **Structured reasoning**: The branching logic mirrors how a skilled coach would guide a conversation.
 - **State tracking**: The programme remembers your answers throughout the session and uses them in the final summary.
 - **Data-driven design**: The entire conversation flow is stored in a separate data file (`reflection-decision-tree.json`), meaning the questions and logic can be updated without touching the code.
@@ -67,7 +78,9 @@ This project demonstrates how **AI-agent thinking** can be applied to personal d
 |---|---|
 | **Python** | The programming language the tool is written in |
 | **Jupyter Notebook** | An interactive environment that lets you run code step by step, like a document that also executes |
-| **JSON** | A lightweight, human-readable file format used to store the conversation logic |
+| **JSON** | A lightweight, human-readable file format used to store the entire conversation logic and pre-written outputs |
+
+> **No external AI services, APIs, or LLMs are used.** The tool runs entirely offline using only standard Python libraries.
 
 ---
 
